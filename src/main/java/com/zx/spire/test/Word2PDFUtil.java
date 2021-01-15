@@ -5,6 +5,8 @@ package com.zx.spire.test;
  * @date 2017-11-02 下午7:19
  */
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -21,13 +23,14 @@ import org.docx4j.samples.AbstractSample;
  */
 public class Word2PDFUtil extends AbstractSample {
 
-    public static void convert(String wordInputFilePath, String pdfOutputFilePath) throws Exception{
+    public static void convert(ByteArrayOutputStream outputStream, String pdfOutputFilePath) throws Exception{
         Long startTime = System.currentTimeMillis();
         try (OutputStream os = new java.io.FileOutputStream(pdfOutputFilePath);){
-            WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(new File(wordInputFilePath));
+
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+            WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(inputStream);
 
             Mapper fontMapper = new IdentityPlusMapper();
-            wordMLPackage.setFontMapper(fontMapper);
 
             fontMapper.put("隶书", PhysicalFonts.get("LiSu"));
             fontMapper.put("宋体",PhysicalFonts.get("SimSun"));
@@ -45,12 +48,18 @@ public class Word2PDFUtil extends AbstractSample {
             fontMapper.put("华文中宋",PhysicalFonts.get("STZhongsong"));
 
 
+            wordMLPackage.setFontMapper(fontMapper);
+
             FOSettings foSettings = Docx4J.createFOSettings();
 
             foSettings.setWmlPackage(wordMLPackage);
 
 
             Docx4J.toFO(foSettings, os, Docx4J.FLAG_EXPORT_PREFER_XSL);
+
+            if (wordMLPackage.getMainDocumentPart().getFontTablePart() != null) {
+                wordMLPackage.getMainDocumentPart().getFontTablePart().deleteEmbeddedFontTempFiles();
+            }
         }
     }
 }

@@ -1,7 +1,12 @@
 package com.zx.spire.test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
 import com.spire.doc.Document;
 import com.spire.doc.FileFormat;
+import com.spire.doc.ToPdfParameterList;
 import com.spire.doc.documents.TextSelection;
 import com.spire.doc.fields.DocPicture;
 import com.spire.doc.fields.TextRange;
@@ -12,9 +17,9 @@ import com.spire.doc.fields.TextRange;
  */
 public class Replace {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
         Document document = new Document();
-        document.loadFromFile("/Users/zhouxuan/Desktop/itext_text/个人税收居民身份声明文件.doc");
+        document.loadFromFile("/Users/zhouxuan/Desktop/itext_text/个人税收居民身份声明文件.docx");
         document.setReplaceFirst(true);
         //调用方法用新文本替换原文本内容
         document.replace("${name}", "周旋", false, true);
@@ -56,9 +61,18 @@ public class Replace {
         //除了16进制，也可以用10进制来表示这个符号，复选框打勾是82
         document.replace(selection3.getSelectedText(),String.valueOf(((char)163)), true, false);
 
-        //保存文档
-        document.saveToFile("/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.docx", FileFormat.Docx_2013);
+
+        //
+        document.saveToFile("/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.pdf",FileFormat.PDF);
         document.dispose();
+        //保存文档
+        /*ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        document.saveToStream(outputStream, FileFormat.Docx_2013);
+        document.dispose();
+
+        Word2PDFUtil.convert(outputStream,"/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.pdf");*/
+
+        ToPdfParameterList list = new ToPdfParameterList();
     }
 
 }

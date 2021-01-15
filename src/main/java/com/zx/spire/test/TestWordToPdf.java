@@ -26,6 +26,6 @@ public class TestWordToPdf {
     }*/
 
     public static void main(String[] args) throws Exception {
-        Word2PDFUtil.convert("/Users/zhouxuan/Desktop/itext_text/1.docx","/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.pdf");
+       // Word2PDFUtil.convert("/Users/zhouxuan/Desktop/itext_text/1.docx","/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.pdf");
     }
 }

@@ -15,7 +15,7 @@ public class Test {
         document.setReplaceFirst(true);
         //调用方法用新文本替换原文本内容
         document.replace("${name}", "周旋", false, true);
-        document.saveToFile("/Users/zhouxuan/Desktop/itext_text/1.docx", FileFormat.Docx_2013);
+        document.saveToFile("/Users/zhouxuan/Desktop/itext_text/1.pdf", FileFormat.PDF);
         document.dispose();
     }
 
