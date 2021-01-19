@@ -23,12 +23,12 @@ import org.docx4j.samples.AbstractSample;
  */
 public class Word2PDFUtil extends AbstractSample {
 
-    public static void convert(ByteArrayOutputStream outputStream, String pdfOutputFilePath) throws Exception{
+    public static void convert(String outputStream, String pdfOutputFilePath) throws Exception{
         Long startTime = System.currentTimeMillis();
         try (OutputStream os = new java.io.FileOutputStream(pdfOutputFilePath);){
 
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-            WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(inputStream);
+            //ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+            WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(new File(outputStream));
 
             Mapper fontMapper = new IdentityPlusMapper();
 

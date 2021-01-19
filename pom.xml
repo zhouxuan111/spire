@@ -45,24 +45,6 @@
             <artifactId>spire.pdf.free</artifactId>
             <version>3.9.0</version>
         </dependency>
-       <!-- <dependency>
-            <groupId>org.docx4j</groupId>
-            <artifactId>docx4j-documents4j-local</artifactId>
-            <version>8.2.8</version>
-        </dependency>
-        <dependency>
-            <groupId>org.docx4j</groupId>
-            <artifactId>docx4j-JAXB-ReferenceImpl</artifactId>
-            <version>8.2.8</version>
-
-        </dependency>
--->
-        <!--<dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
-        </dependency>-->
-
 
         <dependency>
             <groupId>org.docx4j</groupId>
@@ -80,7 +62,6 @@
             <artifactId>docx4j</artifactId>
             <version>3.3.6</version>
         </dependency>
-
     </dependencies>
 
     <repositories>

@@ -1,5 +1,14 @@
 package com.zx.spire.test;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import com.documents4j.api.DocumentType;
+import com.documents4j.api.IConverter;
+import com.documents4j.job.LocalConverter;
 
 /**
  * @author xuanzhou
@@ -7,25 +16,23 @@ package com.zx.spire.test;
  */
 public class TestWordToPdf {
 
-    /*public static void main(String[] args) throws IOException, Docx4JException {
-
-
-        WordprocessingMLPackage pkg = Docx4J.load(new File("/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.docx"));
-
-        File output = new File("/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.pdf");
-        FileOutputStream fos = new FileOutputStream(output);
-
-        Documents4jLocalServices exporter = new Documents4jLocalServices();
-        exporter.export(pkg, fos);
-
-        // or equivalently,
-        // Docx4J.toPDF(pkg, fos);
-
-        fos.close();
-
-    }*/
-
     public static void main(String[] args) throws Exception {
-       // Word2PDFUtil.convert("/Users/zhouxuan/Desktop/itext_text/1.docx","/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.pdf");
+       Word2PDFUtil.convert("/Users/zhouxuan/Desktop/itext_text/12.docx","/Users/zhouxuan/Desktop/itext_text/2.pdf");
+        /*File inputWord = new File("/Users/zhouxuan/Desktop/itext_text/1.docx");
+        File outputFile = new File("/Users/zhouxuan/Desktop/itext_text/2.pdf");
+        try  {
+            InputStream docxInputStream = new FileInputStream(inputWord);
+            OutputStream outputStream = new FileOutputStream(outputFile);
+            IConverter converter = LocalConverter.builder().build();
+            converter.convert(docxInputStream).as(DocumentType.DOCX).to(outputStream).as(DocumentType.PDF).execute();
+            outputStream.close();
+            17：17:25
+
+
+            System.out.println("success");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
     }
 }
