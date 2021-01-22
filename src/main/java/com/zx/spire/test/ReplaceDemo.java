@@ -40,12 +40,9 @@ public class ReplaceDemo {
         range.getOwnerParagraph().getChildObjects().insert(index,pic);
         range.getOwnerParagraph().getChildObjects().remove(range);
 
-
         //复选框打钩
-
-
         TextSelection selection1 = document.findString("${checkbox_one}",true,false);
-//创建Word文档
+        //创建Word文档
         TextRange textRange1 = selection1.getAsOneRange();
         Paragraph paragraph1 =  textRange1.getOwnerParagraph();
          index = textRange1.getOwnerParagraph().getChildObjects().indexOf(textRange1);
@@ -66,7 +63,7 @@ public class ReplaceDemo {
 
 
         TextSelection selection2 = document.findString("${checkbox_two}",true,false);
-//创建Word文档
+        //创建Word文档
         TextRange textRange2 = selection2.getAsOneRange();
         index = textRange2.getOwnerParagraph().getChildObjects().indexOf(textRange2);
 
@@ -82,7 +79,7 @@ public class ReplaceDemo {
 
 
         TextSelection selection3 = document.findString("${checkbox_three}",true,false);
-//创建Word文档
+        //创建Word文档
         TextRange textRange3 = selection3.getAsOneRange();
         Paragraph paragraph3 =  textRange3.getOwnerParagraph();
         index = textRange3.getOwnerParagraph().getChildObjects().indexOf(textRange3);
@@ -96,19 +93,8 @@ public class ReplaceDemo {
         sd3.getChildObjects().add(textRange3);
         scb3.setChecked(false);
 
-       /* document.saveToFile("/Users/zhouxuan/Desktop/itext_text/5.docx", FileFormat.Docx_2013);
-        document.dispose();*/
 
-
-
-
-
-
-
-
-
-
-      //使用宋体转换为PDF
+        //使用宋体转换为PDF - 添加未安装字体
         PrivateFontPath fontPath = new PrivateFontPath("宋体","src/main/resources/宋体_常规.ttc");
         PrivateFontPath fontPath1 = new PrivateFontPath("MS Gothic","src/main/resources/MS Gothic.ttc");
         ToPdfParameterList toPdfParameterList = new ToPdfParameterList();
@@ -119,21 +105,6 @@ public class ReplaceDemo {
         //pdf的保存路径
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         document.saveToFile("/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.pdf",toPdfParameterList);
-        //Word2PDFUtil.convert(outputStream,"/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.pdf");
-
-
-        //将Word文档保存为PDF
-       // document.saveToFile("output/EmbedFont.pdf",toPdfParameterList);
-
-        //
-       /* document.saveToFile("/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.pdf",FileFormat.PDF);
-        document.dispose();*/
-        //保存文档
-       /* ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        document.saveToStream(outputStream, FileFormat.Docx_2013);
-
-*/
-        //ToPdfParameterList list = new ToPdfParameterList();
     }
 
 }
