@@ -1,9 +1,7 @@
 package com.zx.spire.test;
 
 
-import com.spire.doc.Document;
-import com.spire.doc.FileFormat;
-import com.spire.doc.Section;
+import com.spire.doc.*;
 import com.spire.doc.documents.Paragraph;
 import com.spire.doc.documents.SdtCheckBox;
 import com.spire.doc.documents.SdtType;
@@ -11,6 +9,10 @@ import com.spire.doc.documents.StructureDocumentTagInline;
 import com.spire.doc.documents.TextSelection;
 import com.spire.doc.fields.DocPicture;
 import com.spire.doc.fields.TextRange;
+
+import java.io.ByteArrayOutputStream;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author xuanzhou
@@ -49,12 +51,15 @@ public class ReplaceDemo {
          index = textRange1.getOwnerParagraph().getChildObjects().indexOf(textRange1);
 
         //添加复选框内容控件
+        //
         StructureDocumentTagInline sd1 = new StructureDocumentTagInline(document);
         paragraph1.getChildObjects().insert(index,sd1);
         sd1.getSDTProperties().setSDTType(SdtType.Check_Box);
         SdtCheckBox scb1 = new SdtCheckBox();
         sd1.getSDTProperties().setControlProperties(scb1);
         sd1.getChildObjects().add(textRange1);
+        sd1.getSDTProperties().setAlias("复选框");
+        sd1.getSDTProperties().setTag("复选框");
         //顺序不能更换 复选框打对勾
         scb1.setCheckedStateCharacterCode(9745);
         scb1.setChecked(true);
@@ -91,8 +96,8 @@ public class ReplaceDemo {
         sd3.getChildObjects().add(textRange3);
         scb3.setChecked(false);
 
-        document.saveToFile("/Users/zhouxuan/Desktop/itext_text/5.docx", FileFormat.Docx_2013);
-        document.dispose();
+       /* document.saveToFile("/Users/zhouxuan/Desktop/itext_text/5.docx", FileFormat.Docx_2013);
+        document.dispose();*/
 
 
 
@@ -103,15 +108,19 @@ public class ReplaceDemo {
 
 
 
-      /*  //使用宋体转换为PDF
+      //使用宋体转换为PDF
         PrivateFontPath fontPath = new PrivateFontPath("宋体","src/main/resources/宋体_常规.ttc");
+        PrivateFontPath fontPath1 = new PrivateFontPath("MS Gothic","src/main/resources/MS Gothic.ttc");
         ToPdfParameterList toPdfParameterList = new ToPdfParameterList();
         List pathList = new LinkedList<>();
         pathList.add(fontPath);
+        pathList.add(fontPath);
         toPdfParameterList.setPrivateFontPaths(pathList);
         //pdf的保存路径
-        document.saveToFile("/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.docx",toPdfParameterList);
-*/
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        document.saveToFile("/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.pdf",toPdfParameterList);
+        //Word2PDFUtil.convert(outputStream,"/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.pdf");
+
 
         //将Word文档保存为PDF
        // document.saveToFile("output/EmbedFont.pdf",toPdfParameterList);
@@ -123,7 +132,6 @@ public class ReplaceDemo {
        /* ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         document.saveToStream(outputStream, FileFormat.Docx_2013);
 
-        Word2PDFUtil.convert(outputStream,"/Users/zhouxuan/Desktop/itext_text/ReplaceTextWithImage.pdf");
 */
         //ToPdfParameterList list = new ToPdfParameterList();
     }
